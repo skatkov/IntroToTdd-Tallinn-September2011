@@ -107,24 +107,10 @@ public class ConvertArabicNumbersToRomanTest {
 			throw new IllegalArgumentException(
 					"The Romans didn't have a way to write " + arabic);
 
-		if (arabic == 19) {
-			return "X" + "IX";
-		} else if (arabic >= 15) {
-			return "X" + "V" + repeatOnes(arabic - 10 - 5);
-		} else if (arabic == 14) {
-			return "X" + "IV";
-		} else if (arabic >= 10) {
-			return "X" + repeatOnes(arabic - 10);
-		} else if (arabic == 9) {
-			return "IX";
-		} else if (arabic >= 5) {
-			return "V" + repeatOnes(arabic - 5);
-		} else if (arabic == 4) {
-			return "IV";
-		} else if (arabic >= 0) {
-			return repeatOnes(arabic);
+		if (arabic >= 10) {
+			return "X" + foo(arabic - 10);
 		} else {
-			throw new IllegalStateException("How did I get here?!");
+			return foo(arabic);
 		}
 	}
 
@@ -134,5 +120,19 @@ public class ConvertArabicNumbersToRomanTest {
 			ones += "I";
 		}
 		return ones;
+	}
+
+	private String foo(int arabic) {
+		if (arabic == 9) {
+			return "I" + "X";
+		} else if (arabic >= 5) {
+			return "V" + repeatOnes(arabic - 5);
+		} else if (arabic == 4) {
+			return "I" + "V";
+		} else if (arabic >= 0) {
+			return repeatOnes(arabic);
+		} else {
+			return "";
+		}
 	}
 }
