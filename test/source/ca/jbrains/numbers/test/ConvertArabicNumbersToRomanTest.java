@@ -43,6 +43,11 @@ public class ConvertArabicNumbersToRomanTest {
 	}
 
 	@Test
+	public void four() throws Exception {
+		assertEquals("IV", romanise(4));
+	}
+
+	@Test
 	public void five() throws Exception {
 		assertEquals("V", romanise(5));
 	}
@@ -51,12 +56,12 @@ public class ConvertArabicNumbersToRomanTest {
 	public void six() throws Exception {
 		assertEquals("VI", romanise(6));
 	}
-	
+
 	@Test
 	public void seven() throws Exception {
 		assertEquals("VII", romanise(7));
 	}
-	
+
 	@Test
 	public void eight() throws Exception {
 		assertEquals("VIII", romanise(8));
@@ -69,6 +74,8 @@ public class ConvertArabicNumbersToRomanTest {
 
 		if (arabic >= 5) {
 			return appendOnes(arabic - 5, "V");
+		} else if (arabic == 4) {
+			return "IV";
 		} else {
 			return appendOnes(arabic, "");
 		}
