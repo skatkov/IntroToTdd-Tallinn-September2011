@@ -87,23 +87,44 @@ public class ConvertArabicNumbersToRomanTest {
 		assertEquals("XIV", romanise(14));
 	}
 
+	@Test
+	public void fifteen() throws Exception {
+		assertEquals("XV", romanise(15));
+	}
+
+	@Test
+	public void eighteen() throws Exception {
+		assertEquals("XVIII", romanise(18));
+	}
+
+	@Test
+	public void nineteen() throws Exception {
+		assertEquals("XIX", romanise(19));
+	}
+
 	private String romanise(int arabic) {
 		if (arabic <= 0)
 			throw new IllegalArgumentException(
 					"The Romans didn't have a way to write " + arabic);
 
-		if (arabic == 14) {
+		if (arabic == 19) {
+			return "X" + "IX";
+		} else if (arabic >= 15) {
+			return "X" + appendOnes(arabic - 10 - 5, "V");
+		} else if (arabic == 14) {
 			return "X" + "IV";
 		} else if (arabic >= 10) {
-			return appendOnes(arabic - 10, "X");
+			return "" + appendOnes(arabic - 10, "X");
 		} else if (arabic == 9) {
-			return "IX";
+			return "" + "IX";
 		} else if (arabic >= 5) {
-			return appendOnes(arabic - 5, "V");
+			return "" + appendOnes(arabic - 5, "V");
 		} else if (arabic == 4) {
-			return "IV";
+			return "" + "IV";
+		} else if (arabic >= 0) {
+			return "" + appendOnes(arabic, "");
 		} else {
-			return appendOnes(arabic, "");
+			throw new IllegalStateException("How did I get here?!");
 		}
 	}
 
