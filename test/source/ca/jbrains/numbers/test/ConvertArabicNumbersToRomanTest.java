@@ -110,28 +110,29 @@ public class ConvertArabicNumbersToRomanTest {
 		if (arabic == 19) {
 			return "X" + "IX";
 		} else if (arabic >= 15) {
-			return "X" + appendOnes(arabic - 10 - 5, "V");
+			return "X" + "V" + repeatOnes(arabic - 10 - 5);
 		} else if (arabic == 14) {
 			return "X" + "IV";
 		} else if (arabic >= 10) {
-			return "" + appendOnes(arabic - 10, "X");
+			return "X" + repeatOnes(arabic - 10);
 		} else if (arabic == 9) {
-			return "" + "IX";
+			return "IX";
 		} else if (arabic >= 5) {
-			return "" + appendOnes(arabic - 5, "V");
+			return "V" + repeatOnes(arabic - 5);
 		} else if (arabic == 4) {
-			return "" + "IV";
+			return "IV";
 		} else if (arabic >= 0) {
-			return "" + appendOnes(arabic, "");
+			return repeatOnes(arabic);
 		} else {
 			throw new IllegalStateException("How did I get here?!");
 		}
 	}
 
-	private String appendOnes(int arabic, String romanSoFar) {
-		while (arabic-- > 0) {
-			romanSoFar += "I";
+	private String repeatOnes(int howMany) {
+		String ones = "";
+		while (howMany-- > 0) {
+			ones += "I";
 		}
-		return romanSoFar;
+		return ones;
 	}
 }
