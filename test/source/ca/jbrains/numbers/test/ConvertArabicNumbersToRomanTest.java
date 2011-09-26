@@ -72,12 +72,31 @@ public class ConvertArabicNumbersToRomanTest {
 		assertEquals("IX", romanise(9));
 	}
 
+	@Test
+	public void ten() throws Exception {
+		assertEquals("X", romanise(10));
+	}
+
+	@Test
+	public void thirteen() throws Exception {
+		assertEquals("XIII", romanise(13));
+	}
+
+	@Test
+	public void fourteen() throws Exception {
+		assertEquals("XIV", romanise(14));
+	}
+
 	private String romanise(int arabic) {
 		if (arabic <= 0)
 			throw new IllegalArgumentException(
 					"The Romans didn't have a way to write " + arabic);
 
-		if (arabic == 9) {
+		if (arabic == 14) {
+			return "X" + "IV";
+		} else if (arabic >= 10) {
+			return appendOnes(arabic - 10, "X");
+		} else if (arabic == 9) {
 			return "IX";
 		} else if (arabic >= 5) {
 			return appendOnes(arabic - 5, "V");
