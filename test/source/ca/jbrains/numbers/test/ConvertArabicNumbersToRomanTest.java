@@ -67,12 +67,19 @@ public class ConvertArabicNumbersToRomanTest {
 		assertEquals("VIII", romanise(8));
 	}
 
+	@Test
+	public void nine() throws Exception {
+		assertEquals("IX", romanise(9));
+	}
+
 	private String romanise(int arabic) {
 		if (arabic <= 0)
 			throw new IllegalArgumentException(
 					"The Romans didn't have a way to write " + arabic);
 
-		if (arabic >= 5) {
+		if (arabic == 9) {
+			return "IX";
+		} else if (arabic >= 5) {
 			return appendOnes(arabic - 5, "V");
 		} else if (arabic == 4) {
 			return "IV";
